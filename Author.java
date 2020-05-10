@@ -14,25 +14,48 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_author")
-public class Author implements Serializable{
+public class Author implements Serializable {
 
 	private static final long serialVersionUID = -8859746688226373282L;
-	
+
 	@Id
 	@Column(name = "authorId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer authorId;
-	
+	private Long authorId;
+
 	@Column(name = "authorName")
 	private String authorName;
-	
+
 	@ManyToMany(mappedBy = "authors")
 	private List<Book> books;
 
+	public Long getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(Long authorId) {
+		this.authorId = authorId;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(authorId);
+		return Objects.hash(authorId, authorName, books);
 	}
 
 	@Override
@@ -44,8 +67,8 @@ public class Author implements Serializable{
 			return false;
 		}
 		Author other = (Author) obj;
-		return Objects.equals(authorId, other.authorId);
+		return Objects.equals(authorId, other.authorId) && Objects.equals(authorName, other.authorName)
+				&& Objects.equals(books, other.books);
 	}
 
-	
 }
