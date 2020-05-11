@@ -25,17 +25,17 @@ public class BookLoan implements Serializable {
 	BookLoansKey id;
 
 	@ManyToOne
-	@MapsId("bookId")
+	@MapsId("id")
 	@JoinColumn(name = "bookId")
 	private Book book;
 
 	@ManyToOne
-	@MapsId("branchId")
+	@MapsId("id")
 	@JoinColumn(name = "branchId")
 	private LibraryBranch branch;
 
 	@ManyToOne
-	@MapsId("cardNo")
+	@MapsId("id")
 	@JoinColumn(name = "cardNo")
 	private Borrower borrower;
 
@@ -104,13 +104,9 @@ public class BookLoan implements Serializable {
 		this.dateIn = dateIn;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(book, borrower, branch, dateIn, dateOut, dueDate, id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -122,10 +118,7 @@ public class BookLoan implements Serializable {
 			return false;
 		}
 		BookLoan other = (BookLoan) obj;
-		return Objects.equals(book, other.book) && Objects.equals(borrower, other.borrower)
-				&& Objects.equals(branch, other.branch) && Objects.equals(dateIn, other.dateIn)
-				&& Objects.equals(dateOut, other.dateOut) && Objects.equals(dueDate, other.dueDate)
-				&& Objects.equals(id, other.id);
+		return Objects.equals(id, other.id);
 	}
 
 }

@@ -44,10 +44,6 @@ public class BookLoansKey implements Serializable {
 		this.cardNo = cardNo;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(bookId, branchId, cardNo);

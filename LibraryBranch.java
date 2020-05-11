@@ -19,20 +19,20 @@ public class LibraryBranch implements Serializable {
 	private static final long serialVersionUID = 3322696514580579092L;
 
 	@Id
-	@Column(name = "bookId")
+	@Column(name = "branchId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long branchId;
 
-	@Column(name = "bookId")
+	@Column(name = "branchName")
 	private String branchName;
 
-	@Column(name = "bookId")
+	@Column(name = "branchAddress")
 	private String branchAddress;
 
-	@OneToMany(mappedBy = "branchId")
+	@OneToMany(mappedBy = "branch")
 	private List<BookLoan> bookLoans;
 
-	@OneToMany(mappedBy = "branchId")
+	@OneToMany(mappedBy = "book")
 	private List<BookCopies> bookCopies;
 
 	public Long getBranchId() {
@@ -77,7 +77,7 @@ public class LibraryBranch implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookCopies, bookLoans, branchAddress, branchId, branchName);
+		return Objects.hash(branchId);
 	}
 
 	@Override
@@ -89,9 +89,7 @@ public class LibraryBranch implements Serializable {
 			return false;
 		}
 		LibraryBranch other = (LibraryBranch) obj;
-		return Objects.equals(bookCopies, other.bookCopies) && Objects.equals(bookLoans, other.bookLoans)
-				&& Objects.equals(branchAddress, other.branchAddress) && Objects.equals(branchId, other.branchId)
-				&& Objects.equals(branchName, other.branchName);
+		return Objects.equals(branchId, other.branchId);
 	}
 
 }

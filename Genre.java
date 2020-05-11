@@ -55,7 +55,7 @@ public class Genre implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(books, genreId, genreName);
+		return Objects.hash(genreId);
 	}
 
 	@Override
@@ -67,8 +67,7 @@ public class Genre implements Serializable {
 			return false;
 		}
 		Genre other = (Genre) obj;
-		return Objects.equals(books, other.books) && Objects.equals(genreId, other.genreId)
-				&& Objects.equals(genreName, other.genreName);
+		return Objects.equals(genreId, other.genreId);
 	}
 
 }

@@ -77,7 +77,7 @@ public class Publisher implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(publishedBooks, publisherAddress, publisherId, publisherName, publisherPhone);
+		return Objects.hash(publisherId);
 	}
 
 	@Override
@@ -89,10 +89,7 @@ public class Publisher implements Serializable {
 			return false;
 		}
 		Publisher other = (Publisher) obj;
-		return Objects.equals(publishedBooks, other.publishedBooks)
-				&& Objects.equals(publisherAddress, other.publisherAddress)
-				&& Objects.equals(publisherId, other.publisherId) && Objects.equals(publisherName, other.publisherName)
-				&& Objects.equals(publisherPhone, other.publisherPhone);
+		return Objects.equals(publisherId, other.publisherId);
 	}
 
 }

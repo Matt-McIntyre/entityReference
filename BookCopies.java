@@ -21,12 +21,12 @@ public class BookCopies implements Serializable {
 	BookCopiesKey id;
 
 	@ManyToOne
-	@MapsId("bookId")
+	@MapsId("id")
 	@JoinColumn(name = "bookId")
 	private Book book;
 
 	@ManyToOne
-	@MapsId("branchId")
+	@MapsId("id")
 	@JoinColumn(name = "branchId")
 	private LibraryBranch branch;
 
@@ -67,7 +67,7 @@ public class BookCopies implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(book, branch, id, noOfCopies);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -79,8 +79,7 @@ public class BookCopies implements Serializable {
 			return false;
 		}
 		BookCopies other = (BookCopies) obj;
-		return Objects.equals(book, other.book) && Objects.equals(branch, other.branch) && Objects.equals(id, other.id)
-				&& Objects.equals(noOfCopies, other.noOfCopies);
+		return Objects.equals(id, other.id);
 	}
 
 }

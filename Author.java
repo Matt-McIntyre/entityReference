@@ -55,7 +55,7 @@ public class Author implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(authorId, authorName, books);
+		return Objects.hash(authorId);
 	}
 
 	@Override
@@ -67,8 +67,7 @@ public class Author implements Serializable {
 			return false;
 		}
 		Author other = (Author) obj;
-		return Objects.equals(authorId, other.authorId) && Objects.equals(authorName, other.authorName)
-				&& Objects.equals(books, other.books);
+		return Objects.equals(authorId, other.authorId);
 	}
 
 }

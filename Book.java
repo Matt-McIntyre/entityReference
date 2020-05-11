@@ -42,11 +42,11 @@ public class Book implements Serializable {
 	@JoinColumn(name = "pubId", nullable = false)
 	private Publisher publisher;
 
-	@OneToMany(mappedBy = "bookId")
-	private List<BookLoan> bookLoans;
+	@OneToMany(mappedBy = "book")
+	private List<BookCopies> bookLoans;
 
-	@OneToMany(mappedBy = "bookId")
-	private List<BookCopies> bookCopies;
+	@OneToMany(mappedBy = "book")
+	private List<BookLoan> bookCopies;
 
 	public Long getBookId() {
 		return bookId;
@@ -88,25 +88,25 @@ public class Book implements Serializable {
 		this.publisher = publisher;
 	}
 
-	public List<BookLoan> getBookLoans() {
+	public List<BookCopies> getBookLoans() {
 		return bookLoans;
 	}
 
-	public void setBookLoans(List<BookLoan> bookLoans) {
+	public void setBookLoans(List<BookCopies> bookLoans) {
 		this.bookLoans = bookLoans;
 	}
 
-	public List<BookCopies> getBookCopies() {
+	public List<BookLoan> getBookCopies() {
 		return bookCopies;
 	}
 
-	public void setBookCopies(List<BookCopies> bookCopies) {
+	public void setBookCopies(List<BookLoan> bookCopies) {
 		this.bookCopies = bookCopies;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(authors, bookCopies, bookId, bookLoans, genres, publisher, title);
+		return Objects.hash(bookId);
 	}
 
 	@Override
@@ -118,10 +118,7 @@ public class Book implements Serializable {
 			return false;
 		}
 		Book other = (Book) obj;
-		return Objects.equals(authors, other.authors) && Objects.equals(bookCopies, other.bookCopies)
-				&& Objects.equals(bookId, other.bookId) && Objects.equals(bookLoans, other.bookLoans)
-				&& Objects.equals(genres, other.genres) && Objects.equals(publisher, other.publisher)
-				&& Objects.equals(title, other.title);
+		return Objects.equals(bookId, other.bookId);
 	}
 
 }
