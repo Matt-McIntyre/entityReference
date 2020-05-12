@@ -1,6 +1,7 @@
 package com.ss.training.borrower.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,14 +12,25 @@ public class BookLoansKey implements Serializable {
 
 	private static final long serialVersionUID = -2149958063479848070L;
 
-	@Column(name = "bookId")
+	@Column(name = "bookid")
 	private Long bookId;
 
-	@Column(name = "branchId")
+	@Column(name = "branchid")
 	private Long branchId;
 
-	@Column(name = "cardNo")
+	@Column(name = "cardno")
 	private Long cardNo;
+	
+	@Column(name = "dateout", columnDefinition = "DATE")
+	private LocalDate dateOut;
+
+	public LocalDate getDateOut() {
+		return dateOut;
+	}
+
+	public void setDateOut(LocalDate dateOut) {
+		this.dateOut = dateOut;
+	}
 
 	public Long getBookId() {
 		return bookId;

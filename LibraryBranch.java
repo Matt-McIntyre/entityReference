@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "tbl_library_branch")
 public class LibraryBranch implements Serializable {
@@ -19,20 +21,22 @@ public class LibraryBranch implements Serializable {
 	private static final long serialVersionUID = 3322696514580579092L;
 
 	@Id
-	@Column(name = "branchId")
+	@Column(name = "branchid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long branchId;
 
-	@Column(name = "branchName")
+	@Column(name = "branchname")
 	private String branchName;
 
-	@Column(name = "branchAddress")
+	@Column(name = "branchaddress")
 	private String branchAddress;
 
 	@OneToMany(mappedBy = "branch")
+	@JsonBackReference
 	private List<BookLoan> bookLoans;
 
 	@OneToMany(mappedBy = "book")
+	@JsonBackReference
 	private List<BookCopies> bookCopies;
 
 	public Long getBranchId() {

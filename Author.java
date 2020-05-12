@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "tbl_author")
 public class Author implements Serializable {
@@ -19,14 +21,15 @@ public class Author implements Serializable {
 	private static final long serialVersionUID = -8859746688226373282L;
 
 	@Id
-	@Column(name = "authorId")
+	@Column(name = "authorid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long authorId;
 
-	@Column(name = "authorName")
+	@Column(name = "authorname")
 	private String authorName;
 
 	@ManyToMany(mappedBy = "authors")
+	@JsonBackReference
 	private List<Book> books;
 
 	public Long getAuthorId() {

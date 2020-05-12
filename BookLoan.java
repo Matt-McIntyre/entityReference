@@ -4,7 +4,7 @@
 package com.ss.training.borrower.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "tbl_book_loans")
@@ -26,30 +28,46 @@ public class BookLoan implements Serializable {
 
 	@ManyToOne
 	@MapsId("id")
-	@JoinColumn(name = "bookId")
+	@JoinColumn(name = "bookid")
+	@JsonBackReference
 	private Book book;
 
 	@ManyToOne
 	@MapsId("id")
-	@JoinColumn(name = "branchId")
+	@JoinColumn(name = "branchid")
+	@JsonBackReference
 	private LibraryBranch branch;
 
 	@ManyToOne
 	@MapsId("id")
-	@JoinColumn(name = "cardNo")
+	@JoinColumn(name = "cardno")
+	@JsonBackReference
 	private Borrower borrower;
 
-	@Column(name = "dateOut")
-	private Date dateOut;
+	@Column(name = "duedate", columnDefinition = "DATE")
+	private LocalDate dueDate;
 
-	@Column(name = "dueDate")
-	private Date dueDate;
-
-	@Column(name = "dateIn")
-	private Date dateIn;
+	@Column(name = "datein", columnDefinition = "DATE")
+	private LocalDate dateIn;
 
 	public BookLoansKey getId() {
 		return id;
+	}
+
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public LocalDate getDateIn() {
+		return dateIn;
+	}
+
+	public void setDateIn(LocalDate dateIn) {
+		this.dateIn = dateIn;
 	}
 
 	public void setId(BookLoansKey id) {
@@ -80,29 +98,6 @@ public class BookLoan implements Serializable {
 		this.borrower = borrower;
 	}
 
-	public Date getDateOut() {
-		return dateOut;
-	}
-
-	public void setDateOut(Date dateOut) {
-		this.dateOut = dateOut;
-	}
-
-	public Date getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	public Date getDateIn() {
-		return dateIn;
-	}
-
-	public void setDateIn(Date dateIn) {
-		this.dateIn = dateIn;
-	}
 
 	@Override
 	public int hashCode() {

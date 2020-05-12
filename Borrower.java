@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "tbl_borrower")
 public class Borrower implements Serializable {
@@ -19,7 +21,7 @@ public class Borrower implements Serializable {
 	private static final long serialVersionUID = -4691814048768809869L;
 
 	@Id
-	@Column(name = "cardNo")
+	@Column(name = "cardno")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cardNo;
 
@@ -33,6 +35,7 @@ public class Borrower implements Serializable {
 	private String borrowerPhone;
 
 	@OneToMany(mappedBy = "book")
+	@JsonBackReference
 	private List<BookLoan> bookLoans;
 
 	public Long getCardNo() {

@@ -11,10 +11,10 @@ public class BookCopiesKey implements Serializable {
 
 	private static final long serialVersionUID = -625558072058895677L;
 
-	@Column(name = "bookId")
+	@Column(name = "bookid")
 	private Long bookId;
 
-	@Column(name = "branchId")
+	@Column(name = "branchid")
 	private Long branchId;
 
 	public Long getBookId() {

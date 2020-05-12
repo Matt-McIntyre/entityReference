@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "tbl_book")
 public class Book implements Serializable {
@@ -23,7 +25,7 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = -5416431360670324092L;
 
 	@Id
-	@Column(name = "bookId")
+	@Column(name = "bookid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long bookId;
 
@@ -31,21 +33,23 @@ public class Book implements Serializable {
 	private String title;
 
 	@ManyToMany
-	@JoinTable(name = "tbl_book_authors", joinColumns = @JoinColumn(name = "bookId"), inverseJoinColumns = @JoinColumn(name = "authorId"))
+	@JoinTable(name = "tbl_book_authors", joinColumns = @JoinColumn(name = "bookid"), inverseJoinColumns = @JoinColumn(name = "authorid"))
 	private List<Author> authors;
 
 	@ManyToMany
-	@JoinTable(name = "tbl_book_genres", joinColumns = @JoinColumn(name = "bookId"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	@JoinTable(name = "tbl_book_genres", joinColumns = @JoinColumn(name = "bookid"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private List<Genre> genres;
 
 	@ManyToOne
-	@JoinColumn(name = "pubId", nullable = false)
+	@JoinColumn(name = "pubid", nullable = false)
 	private Publisher publisher;
 
 	@OneToMany(mappedBy = "book")
+	@JsonBackReference
 	private List<BookCopies> bookLoans;
 
 	@OneToMany(mappedBy = "book")
+	@JsonBackReference
 	private List<BookLoan> bookCopies;
 
 	public Long getBookId() {

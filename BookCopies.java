@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "tbl_book_copies")
 public class BookCopies implements Serializable {
@@ -22,15 +24,17 @@ public class BookCopies implements Serializable {
 
 	@ManyToOne
 	@MapsId("id")
-	@JoinColumn(name = "bookId")
+	@JoinColumn(name = "bookid")
+	@JsonBackReference
 	private Book book;
 
 	@ManyToOne
 	@MapsId("id")
-	@JoinColumn(name = "branchId")
+	@JoinColumn(name = "branchid")
+	@JsonBackReference
 	private LibraryBranch branch;
 
-	@Column(name = "noOfCopies")
+	@Column(name = "noofcopies")
 	private Integer noOfCopies;
 
 	public BookCopiesKey getId() {
